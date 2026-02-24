@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Sinal Escolar Automático</title>
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f4f6f9;
+}
+
+.container {
+    background: white;
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+}
+.horarios {
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🔔 Sistema de Sinal Escolar</h2>
+    
+    <input type="time" id="novoHorario">
+    <button onclick="adicionarHorario()">Adicionar Horário</button>
+    
+    <div class="horarios" id="listaHorarios"></div>
+
+    <button onclick="ativarSistema()">Ativar Sistema</button>
+    <button onclick="desativarSistema()">Desativar Sistema</button>
+    
+    <h3 id="status">Status: Desligado</h3>
+</div>
+
+<audio id="som" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+<script>
+let horarios = [];
+let sistemaAtivo = false;
+
+function adicionarHorario() {
+    let horario = document.getElementById("novoHorario").value;
+    if (horario) {
+        horarios.push(horario);
+        atualizarLista();
+    }
+}
+
+function atualizarLista() {
+    let lista = document.getElementById("listaHorarios");
+    lista.innerHTML = "<h4>Horários Programados:</h4>";
+    horarios.forEach(h => {
+        lista.innerHTML += "<p>" + h + "</p>";
+    });
+}
+
+function ativarSistema() {
+    sistemaAtivo = true;
+    document.getElementById("status").innerText = "Status: Ativado";
+}
+
+function desativarSistema() {
+    sistemaAtivo = false;
+    document.getElementById("status").innerText = "Status: Desligado";
+}
+
+setInterval(() => {
+    if (sistemaAtivo) {
+        let agora = new Date();
+        let horaAtual = agora.toTimeString().substring(0,5);
+        
+        if (horarios.includes(horaAtual)) {
+            tocarSom();
+        }
+    }
+}, 1000);
+
+function tocarSom() {
+    document.getElementById("som").play();
+}
+</script>
+
+</body>
+</html>
