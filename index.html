@@ -1,110 +1,177 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Sinal Escolar Automático</title>
-<style>
-body {
-    font-family: Arial;
-    text-align: center;
-    background: #f4f6f9;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel Tech Solutions</title>
 
-.container {
-    background: white;
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-button {
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
 
-button:hover {
-    background: #0056b3;
-}
+        header {
+            background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-input {
-    padding: 8px;
-    margin: 5px;
-}
-.horarios {
-    margin-top: 15px;
-}
-</style>
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        nav {
+            background-color: #1c1c1c;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #2c5364;
+        }
+
+        .about {
+            background-color: #ffffff;
+        }
+
+        .contact {
+            background-color: #2c5364;
+            color: white;
+        }
+
+        .contact p {
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .services {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>🔔 Sistema de Sinal Escolar</h2>
-    
-    <input type="time" id="novoHorario">
-    <button onclick="adicionarHorario()">Adicionar Horário</button>
-    
-    <div class="horarios" id="listaHorarios"></div>
+    <header>
+        <h1>Miguel Tech Solutions</h1>
+        <p>Manutenção de Computadores | Redes | Desenvolvimento Web</p>
+    </header>
 
-    <button onclick="ativarSistema()">Ativar Sistema</button>
-    <button onclick="desativarSistema()">Desativar Sistema</button>
-    
-    <h3 id="status">Status: Desligado</h3>
-</div>
+    <nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+    </nav>
 
-<audio id="som" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <section id="servicos">
+        <h2>Nossos Serviços</h2>
+        <br><br>
+        <div class="services">
+            <div class="card">
+                <h3>Manutenção de Computadores</h3>
+                <p>Formatação, limpeza, upgrade, remoção de vírus e suporte técnico.</p>
+            </div>
 
-<script>
-let horarios = [];
-let sistemaAtivo = false;
+            <div class="card">
+                <h3>Redes de Computadores</h3>
+                <p>Instalação e configuração de redes, roteadores e segurança.</p>
+            </div>
 
-function adicionarHorario() {
-    let horario = document.getElementById("novoHorario").value;
-    if (horario) {
-        horarios.push(horario);
-        atualizarLista();
-    }
-}
+            <div class="card">
+                <h3>Desenvolvimento Web</h3>
+                <p>Criação de sites profissionais para negócios locais.</p>
+            </div>
 
-function atualizarLista() {
-    let lista = document.getElementById("listaHorarios");
-    lista.innerHTML = "<h4>Horários Programados:</h4>";
-    horarios.forEach(h => {
-        lista.innerHTML += "<p>" + h + "</p>";
-    });
-}
+            <div class="card">
+                <h3>Sistemas Personalizados</h3>
+                <p>Desenvolvimento de sistemas para controle de estoque e gestão.</p>
+            </div>
+        </div>
+    </section>
 
-function ativarSistema() {
-    sistemaAtivo = true;
-    document.getElementById("status").innerText = "Status: Ativado";
-}
+    <section id="sobre" class="about">
+        <h2>Sobre a Empresa</h2>
+        <br>
+        <p>
+            A Miguel Tech Solutions oferece soluções completas em tecnologia
+            para pequenos negócios e clientes residenciais. 
+            Trabalhamos com responsabilidade, rapidez e preço justo.
+        </p>
+    </section>
 
-function desativarSistema() {
-    sistemaAtivo = false;
-    document.getElementById("status").innerText = "Status: Desligado";
-}
+    <section id="contato" class="contact">
+        <h2>Contato</h2>
+        <p>📞 WhatsApp: (00) 00000-0000</p>
+        <p>📧 Email: contato@migueltech.com</p>
+        <p>📍 Sua Cidade - Seu Estado</p>
+    </section>
 
-setInterval(() => {
-    if (sistemaAtivo) {
-        let agora = new Date();
-        let horaAtual = agora.toTimeString().substring(0,5);
-        
-        if (horarios.includes(horaAtual)) {
-            tocarSom();
-        }
-    }
-}, 1000);
-
-function tocarSom() {
-    document.getElementById("som").play();
-}
-</script>
+    <footer>
+        © 2026 Miguel Tech Solutions - Todos os direitos reservados.
+    </footer>
 
 </body>
 </html>
+
+
