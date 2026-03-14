@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode colors */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.6%;
+  --primary: 210 40% 96%;
+  --primary-foreground: 210 40% 3.6%;
+  --secondary: 217.2 91.2% 59.8%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 12 76% 61%;
+  --accent-foreground: 210 40% 98%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --border: 210 40% 96%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode colors */
+    --background: 210 40% 3.6%;
+    --foreground: 210 40% 98%;
+    --primary: 210 40% 16%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 91.2% 59.8%;
+    --secondary-foreground: 210 40% 3.6%;
+    --accent: 12 76% 61%;
+    --accent-foreground: 210 40% 3.6%;
+    --muted: 210 40% 16%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --border: 210 40% 16%;
+  }
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-feature-settings: "rounding" 1;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
